@@ -111,3 +111,60 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+
+function articleMaker(object){
+  let newArticle = document.querySelector('.articles')
+  //new elements
+  let article = document.createElement('div');
+  let title = document.createElement('h2');
+  let dateParagraph = document.createElement('p');
+  let paragraph1 = document.createElement('p');
+  let paragraph2 = document.createElement('p');
+  let paragraph3 = document.createElement('p');
+  let expandButton = document.createElement('span');
+  let expandPara = document.createElement('p');
+
+
+  //assign parent
+
+  article.appendChild(title);
+  article.appendChild(dateParagraph);
+  article.appendChild(paragraph1);
+  article.appendChild(paragraph2);
+  article.appendChild(paragraph3);
+  article.appendChild(expandButton);
+  expandButton.appendChild(expandPara);
+
+
+  title.textContent = object.title;
+  dateParagraph.textContent = object.date;
+  paragraph1.textContent = object.firstParagraph;
+  paragraph2.textContent = object.secondParagraph;
+  paragraph3.textContent = object.thirdParagraph;
+  expandPara.textContent = ' ';
+  expandPara.style.width = '80vw'
+
+  article.classList.add('article');
+  expandButton.classList.add('expandButton')
+
+  article.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  article.addEventListener("mouseover", () => {
+    article.style.cursor = 'pointer';
+  })
+  })
+
+  // expandButton.textContent = 'hello'
+  newArticle.appendChild(article)
+
+  return article;
+}
+
+function newArticleAppend(array){
+  array.forEach(el => {
+    return articleMaker(el);
+  })
+}
+
+newArticleAppend(data);
